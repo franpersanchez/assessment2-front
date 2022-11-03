@@ -1,0 +1,109 @@
+.box {
+  background-color: rgb(255, 255, 255);
+  width: 95%;
+  text-align: left;
+  -webkit-box-shadow: 10px 9px 18px -10px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 10px 9px 18px -10px rgba(0, 0, 0, 0.75);
+  box-shadow: 10px 9px 18px -10px rgba(0, 0, 0, 0.75);
+  border-radius: 20px 20px 20px 20px;
+  -moz-border-radius: 20px 20px 20px 20px;
+  -webkit-border-radius: 20px 20px 20px 20px;
+  border: 0px solid #000000;
+  color:#000000;
+  justify-content:left;
+  
+  
+  
+}
+
+span{
+  font-weight: 500;
+  padding: 0.4em;
+}
+
+.submit{
+  
+    margin: auto;
+    display: block;
+    padding: 1em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    width: 5%;
+    text-align: center;
+   
+    box-shadow: 0px 10px 14px -7px #276873;
+    background:linear-gradient(to bottom, #599bb3 5%, #2c92eb 100%);
+    background-color:#599bb3;
+    border-radius:1px;
+    border: #ffffff;
+    
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:15px;
+    font-weight:bold;
+    
+    text-decoration:none;
+    text-shadow:0px 1px 0px #3d768a;
+  }
+  .submit:hover {
+    background:linear-gradient(to bottom, #2c92eb 100%, #599bb3 100%);
+    background-color:#2c92eb;
+  }
+  .submit:active {
+    position:relative;
+    top:1px;
+  }
+
+  .checkbox-button {
+    cursor: pointer;
+    margin-left: 1em;
+  }
+  
+
+  
+  .checkbox-button__input {
+      opacity: 0;
+      position: absolute;
+  }
+  
+  .checkbox-button__control {
+      position: relative;
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      margin-right: 12px;
+      vertical-align: middle;
+      background-color: inherit;
+      color: #017b5f;
+      border: 2px solid #666;
+  }
+  
+  .checkbox-button__input:checked+.checkbox-button__control:after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 1px;
+      left: 1px;
+      width: 90%;
+      height: 90%;
+      background-color: #01a982;
+  }
+  
+  .checkbox-button__input:checked+.checkbox-button__control {
+      border-color: #01a982;
+  }
+  
+  .checkbox-button__control {
+    transform: scale(0.75);
+  }
+  
+  .box1{
+    padding: 0.4em;
+    width: 20%;
+    display: inline-block;
+
+
+  }
+
+  
