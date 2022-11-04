@@ -1,0 +1,55 @@
+body {
+  background-color: #282c34;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  font-size: calc(10px + 2vmin);
+
+  color: white;
+
+  width: 100%;
+
+  background-image: url("../public/background-image.png");
+}
+
+input {
+  margin-left: 20px;
+}
+
+select {
+  margin-left: 20px;
+}
+
+.box {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.App {
+  text-align: center;
+}
+*/ .App-header {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(255, 255, 255);
+}
+.presentation {
+  text-shadow: 2px 1px 4px rgb(72, 72, 82);
+  margin-top: -25%;
+}
+.App-link {
+  color: #61dafb;
+}
