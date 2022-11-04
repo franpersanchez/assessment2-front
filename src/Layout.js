@@ -2,23 +2,7 @@ import { Outlet, Link } from "react-router-dom";
 
 const Layout = () => {
   return (
-    <>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/home">Home</Link>
-          </li>
-          <li>
-            <Link to="/passenger">Passenger</Link>
-          </li>
-          <li>
-            <Link to="/booking">Booking</Link>
-          </li>
-        </ul>
-      </nav>
-
-      <Outlet />
-    </>
+    null
   )
 };
 
