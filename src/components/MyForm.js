@@ -84,7 +84,7 @@ function MyForm() {
 
   const formSubmissionHandler = (event) => {
     event.preventDefault();
-
+    
     console.log(currentId);
     console.log(currentIdDest);
     console.log(currentDateOrigin);
