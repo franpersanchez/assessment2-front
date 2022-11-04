@@ -70,7 +70,9 @@ function MyForm() {
         .then((actualData2) => {
           let l = [];
           for (const v of actualData2) {
-            l.push(data[v.destinationId - 1]);
+            let obj = { location: data[v.destinationId - 1], journeyId: v.id };
+            l.push(obj);
+            //l.push(data[v.destinationId - 1]);
           }
           setData3(actualData2);
           setData2(l);
@@ -86,24 +88,26 @@ function MyForm() {
     }
   }, [currentId]);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetchDataForFlights();
+  };
 
+   function fetchDataForFlights() {
 
-  const handleSubmit = e => {
-    e.preventDefault()
-    fetchDataForFlights()
-  }
-
-  async function fetchDataForFlights() {
-    fetch(`http://localhost:8081/locations/flights?journeyId=2`)
-      .then((response) => response.json())
+     fetch(`http://localhost:8081/locations/flights?journeyId=${currentIdDest}`)
+      .then((response) => {
+        response.json();
+        console.log(response);
+      })
 
       .then((resultf) => {
         setFlightInfo(resultf);
+        console.log(resultf);
+        
       })
       .catch((error) => console.log("error", error));
   }
-
-  
 
   return (
     <div className="box">
@@ -116,7 +120,9 @@ function MyForm() {
               label: location.city,
               value: location.id,
             }))}
-            onChange={(location) => setCurrentId(location.value)}
+            onChange={(location) => {
+              setCurrentId(location.value);
+            }}
           />
         </div>
 
@@ -128,11 +134,14 @@ function MyForm() {
           options={
             data2 &&
             data2.map((destination) => ({
-              label: destination.city,
-              value: destination.id,
+              label: destination.location.city,
+              value: destination.journeyId,
             }))
           }
-          onChange={(destination) => setCurrentIdDest(destination.value)}
+          onChange={(destination) => {
+            setCurrentIdDest(destination.value);
+            console.log(destination.value);
+          }}
         />
 
         <span>Departure</span>
@@ -168,24 +177,19 @@ function MyForm() {
           <span className="checkbox-button__label">Return</span>
         </label>
 
-        <input
-          className="submit"
-          onClick={handleSubmit}
-          value="Search"
-        />
+        <input className="submit" onClick={handleSubmit} value="Search" />
       </form>
       <div>
-        {currentFlightInfo && currentFlightInfo.map((e) => (
-          
-                   
-            <FlightItem key="item"
+        {currentFlightInfo &&
+          currentFlightInfo.map((e) => (
+            <FlightItem
+              key="item"
               departureDate={e.departureDate}
               arrivalDate={e.arrivalDate}
               airLine={e.airLine}
               flightNumber={e.flightNumber}
             />
-          )
-        )}
+          ))}
       </div>
     </div>
   );
