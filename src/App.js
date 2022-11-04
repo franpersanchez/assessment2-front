@@ -1,5 +1,4 @@
 import "./App.css";
-import Layout from "./Layout";
 import Home from "./Pages/Home";
 import Passenger from "./Pages/Passenger";
 import Booking from "./Pages/Booking";
