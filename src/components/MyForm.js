@@ -1,6 +1,7 @@
 import "./MyForm.css";
 import { useState, useEffect } from "react";
 import Select from "react-select";
+import FlightItem from "./FlightItem";
 
 function MyForm() {
   const handleDateOrigin = (event) => {
@@ -29,6 +30,8 @@ function MyForm() {
   const [currentDateOrigin, setcurrentDateOrigin] = useState(date);
   const [currentDateDestination, setcurrentDateDestination] = useState(date);
   const [currentChoiceReturn, setCurrentChoiceReturn] = useState();
+  const [data3, setData3] = useState();
+  const [currentFlightInfo, setFlightInfo] = useState();
 
   useEffect(() => {
     fetch(`http://localhost:8081/locations/showAll`)
@@ -69,6 +72,7 @@ function MyForm() {
           for (const v of actualData2) {
             l.push(data[v.destinationId - 1]);
           }
+          setData3(actualData2);
           setData2(l);
           setError(null);
         })
@@ -82,19 +86,28 @@ function MyForm() {
     }
   }, [currentId]);
 
-  const formSubmissionHandler = (event) => {
-    event.preventDefault();
-    
-    console.log(currentId);
-    console.log(currentIdDest);
-    console.log(currentDateOrigin);
-    console.log(currentDateDestination);
-    console.log(currentChoiceReturn);
-  };
+
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    fetchDataForFlights()
+  }
+
+  async function fetchDataForFlights() {
+    fetch(`http://localhost:8081/locations/flights?journeyId=2`)
+      .then((response) => response.json())
+
+      .then((resultf) => {
+        setFlightInfo(resultf);
+      })
+      .catch((error) => console.log("error", error));
+  }
+
+  
 
   return (
-    <div className="box"> 
-      <form id="formHome" >
+    <div className="box">
+      <form id="formHome">
         <span>Origin: </span>
         <div className="box1">
           <Select
@@ -155,8 +168,25 @@ function MyForm() {
           <span className="checkbox-button__label">Return</span>
         </label>
 
-        <input className="submit" onClick={formSubmissionHandler}  value="Search" />
+        <input
+          className="submit"
+          onClick={handleSubmit}
+          value="Search"
+        />
       </form>
+      <div>
+        {currentFlightInfo && currentFlightInfo.map((e) => (
+          
+                   
+            <FlightItem key="item"
+              departureDate={e.departureDate}
+              arrivalDate={e.arrivalDate}
+              airLine={e.airLine}
+              flightNumber={e.flightNumber}
+            />
+          )
+        )}
+      </div>
     </div>
   );
 }
