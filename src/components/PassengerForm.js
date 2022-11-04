@@ -1,59 +1,33 @@
-import "./App.css";
+import "./PassengerForm.css";
 
-function App() {
+function PassengerForm() {
   return (
-    <div class="box">
-      <form>
-        <label>
-          Name:
-          <input type="text" id="origin" name="origin" />
-        </label>
-
-        <br></br>
-        <br></br>
-
-        <label>
-          Surname:
-          <input type="text" id="destination" name="destination" />
-        </label>
-
-        <br></br>
-        <br></br>
-
-        <label>
-          Nationality:
-          <input type="text" id="destination" name="destination" />
-        </label>
-
-        <br></br>
-        <br></br>
-
-        <label>
-          NIF:
-          <input type="text" id="destination" name="destination" />
-        </label>
-
-        <br></br>
-        <br></br>
-
-        <label>
-          Age:
-          <select name="dropdown">
-            <option value="<2 years old" selected> 2 years old or younger
-            </option>
-            <option value="2<>9">Between 2 and 9 years old</option>
-            <option value=">9" selected>  9 years and older</option>
-          </select>
-          >
-        </label>
-
-        <br></br>
-        <br></br>
-
-        <input type="submit" value="Search" />
-      </form>
+    <div id="bg">
+      <div class="module">
+        <form class="form">
+          <input type="text" placeholder="First Name" class="textbox" />
+          <input type="text" placeholder="Last Name" class="textbox" />
+          <input type="text" placeholder="Nationality" class="textbox" />
+          <input type="text" placeholder="NIF or Passport" class="textbox" />
+          <input
+            type="text"
+            placeholder="Age range"
+            class="textbox"
+            list="ageRange"
+          />
+          <datalist id="ageRange">
+            <option> Less than 2 years</option>
+            <option> Between 2 and 9 years</option>
+            <option> More than 9 years</option>
+          </datalist>
+          <button type="button" class="button">
+            {" "}
+            Next{" "}
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
 
-export default App;
+export default PassengerForm;

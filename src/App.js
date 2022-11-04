@@ -10,11 +10,9 @@ function App() {
       <header className="App-header">
         <BrowserRouter>
           <Routes>
-              
-              <Route path="/" element={<Home />} />
-              <Route path="passenger" element={<Passenger />} />
-              <Route path="booking" element={<Booking />} />
-            
+            <Route path="/" element={<Home />} />
+            <Route path="passenger" element={<Passenger />} />
+            <Route path="booking" element={<Booking />} />
           </Routes>
         </BrowserRouter>
       </header>
