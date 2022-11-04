@@ -1,7 +1,7 @@
 
 .App-header {
   
-  background-image: url("C:\Users\Francisco.Perez\Desktop\frontend-flights\flights-front2\public\maldives-gf6328fccf_1920.jpg");
+  background-image: url("../public/maldives-gf6328fccf_1920.jpg");
   min-height: 100vh;
   display: flex;
   flex-direction: column;

@@ -2,40 +2,18 @@ import "./MyForm.css";
 import { useState, useEffect } from "react";
 import Select from "react-select";
 
-
-
 function MyForm() {
-
-  function getSelectFields(){
-    console.log(currentId)
-    console.log(currentIdDest)
-    console.log(currentDateOrigin)
-    console.log(currentDateDestination)
-    console.log(currentChoiceReturn)
-
-  }
-
   const handleDateOrigin = (event) => {
-  
-   setcurrentDateOrigin(event.target.value)
+    setcurrentDateOrigin(event.target.value);
+  };
 
-    
+  const handleDateDestination = (event) => {
+    setcurrentDateDestination(event.target.value);
+  };
 
-}
-
-const handleDateDestination = (event) => {
-  
-  setcurrentDateDestination(event.target.value)
-
-   
-
-}
-
-const handleCurrentChoiceReturn = (event)=>{
-  setCurrentChoiceReturn(event.target.checked)
-
-}
-
+  const handleCurrentChoiceReturn = (event) => {
+    setCurrentChoiceReturn(event.target.checked);
+  };
 
   var curr = new Date();
   curr.setDate(curr.getDate());
@@ -47,10 +25,10 @@ const handleCurrentChoiceReturn = (event)=>{
   const [currentId, setCurrentId] = useState();
   const [data2, setData2] = useState();
   const [isShown, setIsShown] = useState(true);
-  const[currentIdDest, setCurrentIdDest]=useState();
-  const[currentDateOrigin, setcurrentDateOrigin]=useState(date);
-  const[currentDateDestination, setcurrentDateDestination]=useState(date)
-  const[currentChoiceReturn, setCurrentChoiceReturn]=useState()
+  const [currentIdDest, setCurrentIdDest] = useState();
+  const [currentDateOrigin, setcurrentDateOrigin] = useState(date);
+  const [currentDateDestination, setcurrentDateDestination] = useState(date);
+  const [currentChoiceReturn, setCurrentChoiceReturn] = useState();
 
   useEffect(() => {
     fetch(`http://localhost:8081/locations/showAll`)
@@ -104,85 +82,83 @@ const handleCurrentChoiceReturn = (event)=>{
     }
   }, [currentId]);
 
- 
+  const formSubmissionHandler = (event) => {
+    event.preventDefault();
 
-  const urlToFlight="";
-  function sendData() {
-    
-  }
+    console.log(currentId);
+    console.log(currentIdDest);
+    console.log(currentDateOrigin);
+    console.log(currentDateDestination);
+    console.log(currentChoiceReturn);
+  };
 
-  return ( 
-   
-          <div className="box">
-            <form id="formHome">
-              <span>Origin: </span>
-              <div className="box1">
-                <Select
-                  name="originId"
-                  options={data.map((location) => ({
-                    label: location.city,
-                    value: location.id,
-                  }))}
-                  onChange={(location) => setCurrentId(location.value)}
-                />
-              </div>
+  return (
+    <div className="box"> 
+      <form id="formHome" >
+        <span>Origin: </span>
+        <div className="box1">
+          <Select
+            name="originId"
+            options={data.map((location) => ({
+              label: location.city,
+              value: location.id,
+            }))}
+            onChange={(location) => setCurrentId(location.value)}
+          />
+        </div>
 
-              <span>Destination:</span>
+        <span>Destination:</span>
 
-              <Select
-                name="destinationId"
-                className="box1"
-                options={
-                  data2 &&
-                  data2.map((destination) => ({
-                    label: destination.city,
-                    value: destination.id,
-                  }))
-                }
-                onChange={(destination) => setCurrentIdDest(destination.value)}
-                
-                
-              />
+        <Select
+          name="destinationId"
+          className="box1"
+          options={
+            data2 &&
+            data2.map((destination) => ({
+              label: destination.city,
+              value: destination.id,
+            }))
+          }
+          onChange={(destination) => setCurrentIdDest(destination.value)}
+        />
 
-              <span>Departure</span>
-              <input
-                type="date"
-                id="origin-time"
-                name="origin-time"
-                min={date}
-                value={currentDateOrigin}
-                onChange={handleDateOrigin}
-              ></input>
+        <span>Departure</span>
+        <input
+          type="date"
+          id="origin-time"
+          name="origin-time"
+          min={date}
+          value={currentDateOrigin}
+          onChange={handleDateOrigin}
+        ></input>
 
-              <span>Return</span>
-              <input
-                type="date"
-                id="return-time"
-                name="return-time"
-                min={date}
-                value={currentDateDestination}
-                onChange={handleDateDestination}
-              ></input>
+        <span>Return</span>
+        <input
+          type="date"
+          id="return-time"
+          name="return-time"
+          min={date}
+          value={currentDateDestination}
+          onChange={handleDateDestination}
+        ></input>
 
-              <label className="checkbox-button">
-                
-                <input
-                  type="checkbox"
-                  className="checkbox-button__input"
-                  id="return-choice"
-                  name="return-choice"
-                  value={currentChoiceReturn}
-                  onChange={handleCurrentChoiceReturn}
-                ></input>
-                <span className="checkbox-button__control"></span>
-                <span className="checkbox-button__label">Return</span>
-              </label>
+        <label className="checkbox-button">
+          <input
+            type="checkbox"
+            className="checkbox-button__input"
+            id="return-choice"
+            name="return-choice"
+            value={currentChoiceReturn}
+            onChange={handleCurrentChoiceReturn}
+          ></input>
+          <span className="checkbox-button__control"></span>
+          <span className="checkbox-button__label">Return</span>
+        </label>
 
-              <input className="submit" onClick={getSelectFields} value="Search"/>
-            </form>
-          
-          </div>
-      );
+        <input className="submit" onClick={formSubmissionHandler}  value="Search" />
+      </form>
+    </div>
+  );
 }
 
 export default MyForm;
